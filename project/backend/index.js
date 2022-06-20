@@ -1,10 +1,16 @@
 const express = require("express")
 const app = express()
-const cors = require("cors")
 const PORT = process.env.PORT || 3000
+const cors = require("cors")
 
 app.use(cors())
 
+app.use('/', express.static('public'))
+
+app.get('/', (req, res) => {
+  res.render('index')
+})
+  
 app.listen(PORT, () => {
-  console.log(`Server started in port ${PORT}`);
-});
+  console.log(`Server started in port ${PORT}`)
+})
