@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
         - name: project-backend
-          image: aeriihia/project-backend
+          image: aeriihia/project-backend:v0.5
