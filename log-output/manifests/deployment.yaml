@@ -12,6 +12,17 @@ spec:
       labels:
         app: log-output
     spec:
+      volumes:
+        - name: shared-files
+          emptyDir: {}
       containers:
-        - name: log-output
-          image: aeriihia/log-output:v1
+        - name: log-output-reader
+          image: aeriihia/log-output-reader:v1
+          volumeMounts:
+          - name: shared-files
+            mountPath: /usr/src/app/files
+        - name: log-output-writer
+          image: aeriihia/log-output-writer:v1
+          volumeMounts:
+          - name: shared-files
+            mountPath: /usr/src/app/files
