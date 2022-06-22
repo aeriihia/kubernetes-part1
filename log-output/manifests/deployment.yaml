@@ -14,16 +14,17 @@ spec:
     spec:
       volumes:
         - name: shared-files
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: log-output-claim
       containers:
         - name: log-output-reader
-          image: aeriihia/log-output-reader:v1
+          image: aeriihia/log-output-reader:v2
           imagePullPolicy: Always
           volumeMounts:
           - name: shared-files
             mountPath: /usr/src/app/files
         - name: log-output-writer
-          image: aeriihia/log-output-writer:v1
+          image: aeriihia/log-output-writer:v2
           imagePullPolicy: Always
           volumeMounts:
           - name: shared-files
